@@ -6,32 +6,28 @@ services:
     privileged: true
     restart: always
     ports:
-      - 8024:8024   # Exposing NPS-specific port
+      - 8024:8024  # NPS service internal port
     networks:
-      - web  
+      - web
     volumes:
       - /opt/nps/conf:/conf
     labels:
       - "traefik.enable=true"
 
       # Router for HTTP traffic
-      - "traefik.http.routers.nps-http.rule=HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.sxxpqp.top`)"
+      - "traefik.http.routers.nps-http.rule=Host(`nps.sxxpqp.top`)"
       - "traefik.http.routers.nps-http.entrypoints=web"
-      - "traefik.http.services.nps-http.loadbalancer.server.port=80"
-
+      - "traefik.http.routers.nps-http.service=nps-service"
+ 
       # Router for HTTPS traffic
-      - "traefik.http.routers.nps-https.rule=HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.sxxpqp.top`)"
+      - "traefik.http.routers.nps-https.rule=Host(`nps.sxxpqp.top`)"
       - "traefik.http.routers.nps-https.entrypoints=websecure"
       - "traefik.http.routers.nps-https.tls=true"
       - "traefik.http.routers.nps-https.tls.certresolver=myresolver"
-      - "traefik.http.services.nps-https.loadbalancer.server.port=443"
-
-      # Router for internal traffic
-      - "traefik.http.routers.nps-internal.rule=Host(`nps.sxxpqp.top`)"
-      - "traefik.http.routers.nps-internal.entrypoints=websecure"
-      - "traefik.http.routers.nps-internal.tls=true"
-      - "traefik.http.routers.nps-internal.tls.certresolver=myresolver"
-      - "traefik.http.services.nps-internal.loadbalancer.server.port=8080"
+      - "traefik.http.routers.nps-https.service=nps-service"
+ 
+      # NPS service definition
+      - "traefik.http.services.nps-service.loadbalancer.server.port=8024"
 
 networks:
   web:
