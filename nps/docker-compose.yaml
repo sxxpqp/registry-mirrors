@@ -29,6 +29,7 @@ services:
  
       # NPS service definition
       - "traefik.http.services.nps-service.loadbalancer.server.port=443"
+      - "traefik.http.services.nps-service.loadbalancer.server.port=80"
 
 networks:
   web:
