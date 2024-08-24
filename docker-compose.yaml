@@ -122,7 +122,7 @@ services:
       - "traefik.http.routers.nps-proxy.entrypoints=websecure"
       - "traefik.http.routers.nps-proxy.tls=true"
       - "traefik.http.routers.nps-proxy.tls.certresolver=myresolver"
-   harbor-proxy:
+  harbor-proxy:
     image: nginx
     container_name: harbor-proxy
     restart: always
