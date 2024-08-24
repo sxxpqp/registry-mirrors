@@ -14,10 +14,12 @@ services:
       - "traefik.http.routers.nps.rule=Host(`nps.sxxpqp.top`)"
       - "traefik.http.routers.nps.entrypoints=websecure"
       - "traefik.http.services.nps.loadbalancer.server.port=8080"
+      - "traefik.http.routers.nps.tls=true"
       - "traefik.http.routers.nps.tls.certresolver=myresolver"
       - "traefik.http.routers.npssl.rule=Host(`*.sxxpqp.top`)"
       - "traefik.http.routers.npssl.entrypoints=websecure"
       - "traefik.http.services.npssl.loadbalancer.server.port=443"
+      - "traefik.http.routers.npssl.tls=true"
       - "traefik.http.routers.npssl.tls.certresolver=myresolver"
 networks:
   web:
