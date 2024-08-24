@@ -135,14 +135,14 @@ services:
             # HTTP routing
       - "traefik.http.routers.harbor-proxy-http.entrypoints=web"
       - "traefik.http.routers.harbor-proxy-http.rule=Host(`iharbor.sxxpqp.top`)"
-      - "traefik.http.services.harbor-proxy.loadbalancer.server.port=8001"
+      - "traefik.http.services.harbor-proxy.loadbalancer.server.port=800"
 
       # HTTPS routing
       - "traefik.http.routers.harbor-proxy-https.entrypoints=websecure"
       - "traefik.http.routers.harbor-proxy-https.rule=Host(`iharbor.sxxpqp.top`)"
       - "traefik.http.routers.harbor-proxy-https.tls=true"
       - "traefik.http.routers.harbor-proxy-https.tls.certresolver=myresolver"
-      - "traefik.http.services.harbor-proxy.loadbalancer.server.port=44301"      
+      - "traefik.http.services.harbor-proxy.loadbalancer.server.port=4430"      
 networks:
   web:
     external: true
