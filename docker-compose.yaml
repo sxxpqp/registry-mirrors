@@ -1,0 +1,126 @@
+version: '3.7'
+
+services:
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    restart: always
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=sxxpqp@sxxpqp.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - web
+
+  dockerhub:
+    image: nginx
+    container_name: dockerhub
+    restart: always
+    volumes:
+      - ./dockerhub.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockerhub.rule=Host(`dockerhub.sxxpqp.top`)"
+      - "traefik.http.routers.dockerhub.entrypoints=websecure"
+      - "traefik.http.routers.dockerhub.tls=true"
+      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+  gcr: 
+    image: nginx
+    container_name: gcr
+    restart: always
+    volumes:
+      - ./gcr.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockerhub.rule=Host(`ghcr.sxxpqp.top`)"
+      - "traefik.http.routers.dockerhub.entrypoints=websecure"
+      - "traefik.http.routers.dockerhub.tls=true"
+      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+  ghcr:
+    image: nginx
+    container_name: ghcr
+    restart: always
+    volumes:
+      - ./ghcr.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockerhub.rule=Host(`ghcr.sxxpqp.top`)"
+      - "traefik.http.routers.dockerhub.entrypoints=websecure"
+      - "traefik.http.routers.dockerhub.tls=true"
+      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+  k8s-gcr:
+    image: nginx
+    container_name: k8s-gcr
+    restart: always
+    volumes:
+      - ./k8s-gcr.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockerhub.rule=Host(`k8s-gcr.sxxpqp.top`)"
+      - "traefik.http.routers.dockerhub.entrypoints=websecure"
+      - "traefik.http.routers.dockerhub.tls=true"
+      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+  quay:
+    image: nginx
+    container_name: quay
+    restart: always
+    volumes:
+      - ./quay.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockerhub.rule=Host(`quay.sxxpqp.top`)"
+      - "traefik.http.routers.dockerhub.entrypoints=websecure"
+      - "traefik.http.routers.dockerhub.tls=true"
+      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+  registry-k8s:
+    image: nginx
+    container_name: registry-k8s
+    restart: always
+    volumes:
+      - ./registry-k8s.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockerhub.rule=Host(`registry-k8s.sxxpqp.top`)"
+      - "traefik.http.routers.dockerhub.entrypoints=websecure"
+      - "traefik.http.routers.dockerhub.tls=true"
+      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"  
+networks:
+  web:
+    external: true
+
+
+# 配置docker/daemon.json registry-mirrors
+# {
+#   "registry-mirrors": [
+#     "https://gcr.sxxpqp.top",
+#     "https://ghcr.sxxpqp.top",
+#     "https://k8s-gcr.sxxpqp.top",
+#     "https://quay.sxxpqp.top",
+#     "https://registry-k8s.sxxpqp.top",
+#     "https://dockerhub.sxxpqp.top"
+#   ]
+# }

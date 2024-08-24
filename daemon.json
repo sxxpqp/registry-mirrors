@@ -1,0 +1,8 @@
+{
+    "log-opts": {
+      "max-size": "5m",
+      "max-file":"3"
+    },
+    "registry-mirrors": ["dockerhub.sxxpqp.top","gcr.sxxpqp.top", "ghcr.sxxpqp.top","k8s-gcr.sxxpqp.top","quay.sxxpqp.top","registry-k8s.sxxpqp.top"],
+    "exec-opts": ["native.cgroupdriver=systemd"]
+  }
