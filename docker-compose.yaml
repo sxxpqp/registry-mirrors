@@ -48,10 +48,10 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dockerhub.rule=Host(`ghcr.sxxpqp.top`)"
-      - "traefik.http.routers.dockerhub.entrypoints=websecure"
-      - "traefik.http.routers.dockerhub.tls=true"
-      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+      - "traefik.http.routers.gcr.rule=Host(`ghcr.sxxpqp.top`)"
+      - "traefik.http.routers.gcr.entrypoints=websecure"
+      - "traefik.http.routers.gcr.tls=true"
+      - "traefik.http.routers.gcr.tls.certresolver=myresolver"
   ghcr:
     image: nginx
     container_name: ghcr
@@ -62,10 +62,10 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dockerhub.rule=Host(`ghcr.sxxpqp.top`)"
-      - "traefik.http.routers.dockerhub.entrypoints=websecure"
-      - "traefik.http.routers.dockerhub.tls=true"
-      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+      - "traefik.http.routers.ghcr.rule=Host(`ghcr.sxxpqp.top`)"
+      - "traefik.http.routers.ghcr.entrypoints=websecure"
+      - "traefik.http.routers.ghcr.tls=true"
+      - "traefik.http.routers.ghcr.tls.certresolver=myresolver"
   k8s-gcr:
     image: nginx
     container_name: k8s-gcr
@@ -76,10 +76,10 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dockerhub.rule=Host(`k8s-gcr.sxxpqp.top`)"
-      - "traefik.http.routers.dockerhub.entrypoints=websecure"
-      - "traefik.http.routers.dockerhub.tls=true"
-      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+      - "traefik.http.routers.k8s-gcr.rule=Host(`k8s-gcr.sxxpqp.top`)"
+      - "traefik.http.routers.k8s-gcr.entrypoints=websecure"
+      - "traefik.http.routers.k8s-gcr.tls=true"
+      - "traefik.http.routers.k8s-gcr.tls.certresolver=myresolver"
   quay:
     image: nginx
     container_name: quay
@@ -90,10 +90,10 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dockerhub.rule=Host(`quay.sxxpqp.top`)"
-      - "traefik.http.routers.dockerhub.entrypoints=websecure"
-      - "traefik.http.routers.dockerhub.tls=true"
-      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
+      - "traefik.http.routers.quay.rule=Host(`quay.sxxpqp.top`)"
+      - "traefik.http.routers.quay.entrypoints=websecure"
+      - "traefik.http.routers.quay.tls=true"
+      - "traefik.http.routers.quay.tls.certresolver=myresolver"
   registry-k8s:
     image: nginx
     container_name: registry-k8s
@@ -104,10 +104,10 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dockerhub.rule=Host(`registry-k8s.sxxpqp.top`)"
-      - "traefik.http.routers.dockerhub.entrypoints=websecure"
-      - "traefik.http.routers.dockerhub.tls=true"
-      - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"  
+      - "traefik.http.routers.registry-k8s.rule=Host(`registry-k8s.sxxpqp.top`)"
+      - "traefik.http.routers.registry-k8s.entrypoints=websecure"
+      - "traefik.http.routers.registry-k8s.tls=true"
+      - "traefik.http.routers.registry-k8s.tls.certresolver=myresolver"  
 networks:
   web:
     external: true
