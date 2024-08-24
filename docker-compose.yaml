@@ -121,7 +121,21 @@ services:
       - "traefik.http.routers.nps-proxy.rule=Host(`nps.sxxpqp.top`)"
       - "traefik.http.routers.nps-proxy.entrypoints=websecure"
       - "traefik.http.routers.nps-proxy.tls=true"
-      - "traefik.http.routers.nps-proxy.tls.certresolver=myresolver"     
+      - "traefik.http.routers.nps-proxy.tls.certresolver=myresolver"
+   harbor-proxy:
+    image: nginx
+    container_name: harbor-proxy
+    restart: always
+    volumes:
+      - ./harbor.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.harbor-proxy.rule=Host(`iharbor.sxxpqp.top`)"
+      - "traefik.http.routers.harbor-proxy.entrypoints=websecure"
+      - "traefik.http.routers.harbor-proxy.tls=true"
+      - "traefik.http.routers.harbor-proxy.tls.certresolver=myresolver"        
 networks:
   web:
     external: true
