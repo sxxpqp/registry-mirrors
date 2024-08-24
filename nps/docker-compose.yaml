@@ -10,27 +10,3 @@ services:
     network_mode: "host"
     volumes:
       - /opt/nps/conf:/conf
-    labels:
-      - "traefik.enable=true"
-
-      # Router for HTTP traffic
-      - "traefik.http.routers.nps-http.rule=Host(`iharbor.sxxpqp.top`)"
-      - "traefik.http.routers.nps-http.entrypoints=web"
-      - "traefik.http.routers.nps-http.service=nps-service1"
-      
-      # Router for HTTPS traffic
-      - "traefik.http.routers.nps-https.rule=Host(`iharbor.sxxpqp.top`)"
-      - "traefik.http.routers.nps-https.entrypoints=websecure"
-      - "traefik.http.routers.nps-https.tls=true"
-      - "traefik.http.routers.nps-https.tls.certresolver=myresolver"
-      - "traefik.http.routers.nps-https.service=nps-service"
-      
-      # NPS service definition
-      - "traefik.http.routers.nps-https1.rule=Host(`nps.sxxpqp.top`)"
-      - "traefik.http.routers.nps-https1.entrypoints=websecure"
-      - "traefik.http.routers.nps-https1.tls=true"
-      - "traefik.http.routers.nps-https1.tls.certresolver=myresolver"
-      - "traefik.http.routers.nps-https1.service=nps-service2"
-      - "traefik.http.services.nps-service.loadbalancer.server.port=4430"
-      - "traefik.http.services.nps-service1.loadbalancer.server.port=800"
-      - "traefik.http.services.nps-service2.loadbalancer.server.port=8081"
