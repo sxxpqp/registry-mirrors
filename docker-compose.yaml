@@ -108,7 +108,7 @@ services:
       - "traefik.http.routers.registry-k8s.entrypoints=websecure"
       - "traefik.http.routers.registry-k8s.tls=true"
       - "traefik.http.routers.registry-k8s.tls.certresolver=myresolver"
-  nps:
+  nps-proxy:
     image: nginx
     container_name: registry-k8s
     restart: always
@@ -118,10 +118,10 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nps.rule=Host(`nps.k8s.sxxpqp.top`)"
-      - "traefik.http.routers.nps.entrypoints=websecure"
-      - "traefik.http.routers.nps.tls=true"
-      - "traefik.http.routers.nps.tls.certresolver=myresolver"     
+      - "traefik.http.routers.nps-proxy.rule=Host(`nps.k8s.sxxpqp.top`)"
+      - "traefik.http.routers.nps-proxy.entrypoints=websecure"
+      - "traefik.http.routers.nps-proxy.tls=true"
+      - "traefik.http.routers.nps-proxy.tls.certresolver=myresolver"     
 networks:
   web:
     external: true
