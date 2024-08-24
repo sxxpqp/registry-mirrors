@@ -3,6 +3,6 @@
       "max-size": "5m",
       "max-file":"3" 
     },
-    "registry-mirrors": ["https://dockerhub.sxxpqp.top","https://gcr.sxxpqp.top", "https://ghcr.sxxpqp.top","https://k8s-gcr.sxxpqp.top","https://quay.sxxpqp.top","https://registry-k8s.sxxpqp.top"],
+    "registry-mirrors": ["https://dockerhub.sxxpqp.top","https://gcr.sxxpqp.top", "https://ghcr.sxxpqp.top","https://k8s.gcr.sxxpqp.top","https://quay.sxxpqp.top","https://k8s.gcr.sxxpqp.top"],
     "exec-opts": ["native.cgroupdriver=systemd"]
   }
