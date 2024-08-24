@@ -13,13 +13,6 @@ services:
       - /opt/nps/conf:/conf
     labels:
       - "traefik.enable=true"
-
-      # Router for HTTP traffic
-      - "traefik.http.routers.nps-http.rule=Host(`iharbor.sxxpqp.top`)"
-      - "traefik.http.routers.nps-http.entrypoints=web"
-      - "traefik.http.routers.nps-http.loadbalancer.server.port=80"
-      
- 
       # Router for HTTPS traffic
       - "traefik.http.routers.nps-https.rule=Host(`iharbor.sxxpqp.top`)"
       - "traefik.http.routers.nps-https.entrypoints=websecure"
