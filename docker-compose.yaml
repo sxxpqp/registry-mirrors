@@ -110,7 +110,7 @@ services:
       - "traefik.http.routers.registry-k8s.tls.certresolver=myresolver"
   nps-proxy:
     image: nginx
-    container_name: registry-k8s
+    container_name: nps-proxy
     restart: always
     volumes:
       - ./nps.conf:/etc/nginx/conf.d/default.conf
