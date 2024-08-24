@@ -104,7 +104,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.registry-k8s.rule=Host(`k8s.gcr.sxxpqp.top`)"
+      - "traefik.http.routers.registry-k8s.rule=Host(`registry.k8s.sxxpqp.top`)"
       - "traefik.http.routers.registry-k8s.entrypoints=websecure"
       - "traefik.http.routers.registry-k8s.tls=true"
       - "traefik.http.routers.registry-k8s.tls.certresolver=myresolver"  
