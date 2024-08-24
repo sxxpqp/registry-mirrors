@@ -10,11 +10,13 @@ services:
     volumes:
       - /opt/nps/conf:/conf
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.nps.rule=Host(`*.sxxpqp.top`)"
+      - "traefik.enable=true" 
+      - "traefik.http.routers.nps.rule=Host(`nps.sxxpqp.top`)"
       - "traefik.http.routers.nps.entrypoints=websecure"
-      - "traefik.http.routers.nps.tls=true"
-      - "traefik.http.routers.nps.tls.certresolver=myresolver"  
+      - "traefik.http.services.nps.loadbalancer.server.port=8080"
+      - "traefik.http.routers.npssl.rule=Host(`*.sxxpqp.top`)"
+      - "traefik.http.routers.npssl.entrypoints=websecure"
+      - "traefik.http.services.npssl.loadbalancer.server.port=443
 networks:
   web:
     external: true
