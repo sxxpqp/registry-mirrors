@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  nps:
+    image: sxxpqp/nps
+    container_name: nps
+    privileged: true
+    restart: always
+    networks:
+      - web  
+    volumes:
+      - /opt/nps/conf:/conf
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nps.rule=Host(`*.sxxpqp.top`)"
+      - "traefik.http.routers.nps.entrypoints=websecure"
+      - "traefik.http.routers.nps.tls=true"
+      - "traefik.http.routers.nps.tls.certresolver=myresolver"  
+networks:
+  web:
+    external: true
