@@ -7,8 +7,7 @@ services:
     restart: always
     ports:
       - 8024:8024  # NPS service internal port for TCP bridging
-    networks:
-      - web
+    network_mode: "host"
     volumes:
       - /opt/nps/conf:/conf
     labels:
@@ -35,7 +34,3 @@ services:
       - "traefik.http.services.nps-service.loadbalancer.server.port=4430"
       - "traefik.http.services.nps-service1.loadbalancer.server.port=800"
       - "traefik.http.services.nps-service2.loadbalancer.server.port=8080"
-
-networks:
-  web:
-    external: true
