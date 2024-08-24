@@ -27,7 +27,7 @@ services:
       - "traefik.http.routers.nps-https.service=nps-service"
       
       # NPS service definition
-      - "traefik.http.routers.nps-https1.rule=Host(`iharbor.sxxpqp.top`)"
+      - "traefik.http.routers.nps-https1.rule=Host(`nps.sxxpqp.top`)"
       - "traefik.http.routers.nps-https1.entrypoints=websecure"
       - "traefik.http.routers.nps-https1.tls=true"
       - "traefik.http.routers.nps-https1.tls.certresolver=myresolver"
