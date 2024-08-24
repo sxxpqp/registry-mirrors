@@ -33,4 +33,4 @@ services:
       - "traefik.http.routers.nps-https1.service=nps-service2"
       - "traefik.http.services.nps-service.loadbalancer.server.port=4430"
       - "traefik.http.services.nps-service1.loadbalancer.server.port=800"
-      - "traefik.http.services.nps-service2.loadbalancer.server.port=8080"
+      - "traefik.http.services.nps-service2.loadbalancer.server.port=8081"
