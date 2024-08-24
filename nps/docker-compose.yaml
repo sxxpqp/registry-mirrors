@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  nps:
+    image: sxxpqp/nps
+    container_name: nps
+    privileged: true
+    restart: always
+    ports:
+      - 8024:8024  # NPS service internal port
+    networks:
+      - web
+    volumes:
+      - /opt/nps/conf:/conf
+    labels:
+      - "traefik.enable=true"
+
+      # Router for HTTP traffic
+      - "traefik.http.routers.nps-http.rule=Host(`nps.sxxpqp.top`)"
+      - "traefik.http.routers.nps-http.entrypoints=web"
+      - "traefik.http.routers.nps-http.service=nps-service"
+ 
+      # Router for HTTPS traffic
+      - "traefik.http.routers.nps-https.rule=Host(`nps.sxxpqp.top`)"
+      - "traefik.http.routers.nps-https.entrypoints=websecure"
+      - "traefik.http.routers.nps-https.tls=true"
+      - "traefik.http.routers.nps-https.tls.certresolver=myresolver"
+      - "traefik.http.routers.nps-https.service=nps-service"
+ 
+      # NPS service definition
+      - "traefik.http.services.nps-service.loadbalancer.server.port=8024"
+
+networks:
+  web:
+    external: true
