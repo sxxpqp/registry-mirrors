@@ -133,7 +133,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.harbor-proxy.rule=Host(`iharbor.sxxpqp.top`)"
-      - "traefik.http.routers.harbor-proxy.entrypoints=websecure"
+      - "traefik.http.routers.harbor-proxy.entrypoints=web,websecure"
       - "traefik.http.routers.harbor-proxy.tls=true"
       - "traefik.http.routers.harbor-proxy.tls.certresolver=myresolver"        
 networks:
