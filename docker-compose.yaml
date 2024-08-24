@@ -118,7 +118,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nps-proxy.rule=Host(`nps.k8s.sxxpqp.top`)"
+      - "traefik.http.routers.nps-proxy.rule=Host(`nps.sxxpqp.top`)"
       - "traefik.http.routers.nps-proxy.entrypoints=websecure"
       - "traefik.http.routers.nps-proxy.tls=true"
       - "traefik.http.routers.nps-proxy.tls.certresolver=myresolver"     
