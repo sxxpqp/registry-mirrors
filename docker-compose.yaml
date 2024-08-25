@@ -134,10 +134,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.harbor-proxy.rule=Host(`iharbor.sxxpqp.top`)"
       - "traefik.http.routers.harbor-proxy.entrypoints=websecure"
-      - "traefik.http.routers.harbor-proxy.service=nps-service"
+      - "traefik.http.routers.harbor-proxy.service=harbor-service"
       - "traefik.http.routers.harbor-proxy.tls=true"
       - "traefik.http.routers.harbor-proxy.tls.certresolver=myresolver"
-      - "traefik.http.services.harbor-proxy.loadbalancer.server.url=http://10.0.4.6:4430"
+      - "traefik.http.services.harbor-service.loadbalancer.server.url=http://10.0.4.6:4430"
 networks:
   web:
     external: true
