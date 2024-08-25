@@ -1,1 +1,21 @@
+version: '3.7'
+
+services:
+  demo:
+    image: nginx
+    container_name: demo
+    restart: always
+    volumes:
+      - ./demo.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.demo.rule=Host(`dockerhub.sxxpqp.top`)"
+      - "traefik.http.routers.demo.entrypoints=websecure"
+      - "traefik.http.routers.demo.tls=true"
+      - "traefik.http.routers.demo.tls.certresolver=myresolver"
+networks:
+  web:
+    external: true
 
