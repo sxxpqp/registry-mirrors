@@ -141,7 +141,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.harbor-proxy.rule=Host(`*.sxxpqp.top`)"
       - "traefik.http.routers.harbor-proxy.entrypoints=websecure"
-      - "traefik.http.routers.harbor-proxy.service=harbor-service"
+      # - "traefik.http.routers.harbor-proxy.service=harbor-service"
       - "traefik.http.routers.harbor-proxy.tls=true"
       - "traefik.http.routers.harbor-proxy.tls.certresolver=myresolver"
 networks:
