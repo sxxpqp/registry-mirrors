@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  demo:
+    image: nginx
+    container_name: nvidia
+    restart: always
+    volumes:
+      - ./nvidia.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nvidia.rule=Host(`nvidia.sxxpqp.top`)"
+      - "traefik.http.routers.nvidia.entrypoints=websecure"
+      - "traefik.http.routers.nvidia.tls=true"
+      - "traefik.http.routers.nvidia.tls.certresolver=myresolver"
+networks:
+  web:
+    external: true
