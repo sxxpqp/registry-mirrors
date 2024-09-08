@@ -1,1 +1,26 @@
 
+version: '3.7'
+
+services:
+  demo:
+    image: quay.io/minio/minio
+    container_name: minio
+    restart: always
+    volumes:
+      -  /mnt/data:/data
+    networks:
+      - web
+    command: server --console-address ":9001"  
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.minio.rule=Host(`minio.sxxpqp.top`)"
+      - "traefik.http.routers.minio.entrypoints=websecure"
+      - "traefik.http.routers.minio.tls=true"
+      - "traefik.http.routers.minio.tls.certresolver=myresolver"
+      - "traefik.http.routers.minioapi.rule=Host(`minioapi.sxxpqp.top`)"
+      - "traefik.http.routers.minioapi.entrypoints=websecure"
+      - "traefik.http.routers.minioapi.tls=true"
+      - "traefik.http.routers.minioapi.tls.certresolver=myresolver"
+networks:
+  web:
+    external: true
