@@ -10,7 +10,7 @@ services:
       -  /mnt/data:/data
     networks:
       - web
-    command: server --console-address ":9001"  
+    command: server /data --console-address ":9001"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.minio.rule=Host(`minio.sxxpqp.top`)"
