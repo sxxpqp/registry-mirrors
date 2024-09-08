@@ -2,7 +2,7 @@
 version: '3.7'
 
 services:
-  demo:
+  minio:
     image: quay.io/minio/minio
     container_name: minio
     restart: always
