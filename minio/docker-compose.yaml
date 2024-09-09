@@ -21,11 +21,11 @@ services:
       - "traefik.http.routers.minio.tls=true"
       - "traefik.http.routers.minio.tls.certresolver=myresolver"
       - "traefik.http.services.minio.loadbalancer.server.port=9000"
-      - "traefik.http.routers.minioapi.rule=Host(`minioapi.sxxpqp.top`)"
-      - "traefik.http.routers.minioapi.entrypoints=websecure"
-      - "traefik.http.routers.minioapi.tls=true"
-      - "traefik.http.routers.minioapi.tls.certresolver=myresolver"
-      - "traefik.http.services.minioapi.loadbalancer.server.port=9001"
+      # - "traefik.http.routers.minioapi.rule=Host(`minioapi.sxxpqp.top`)"
+      # - "traefik.http.routers.minioapi.entrypoints=websecure"
+      # - "traefik.http.routers.minioapi.tls=true"
+      # - "traefik.http.routers.minioapi.tls.certresolver=myresolver"
+      # - "traefik.http.services.minioapi.loadbalancer.server.port=9001"
 networks:
   web:
     external: true
