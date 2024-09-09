@@ -139,7 +139,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.harbor-proxy.rule=Host(`iharbor.sxxpqp.top`) || Host(`ikuai.sxxpqp.top`) || Host(`dify.sxxpqp.top`) || Host(`clash.sxxpqp.top`) || Host(`llama.sxxpqp.top`)"
+      - "traefik.http.routers.harbor-proxy.rule=Host(`iharbor.sxxpqp.top`) || Host(`ikuai.sxxpqp.top`) || Host(`dify.sxxpqp.top`) || Host(`clash.sxxpqp.top`) || Host(`llama.sxxpqp.top`) || Host(`minioapi.sxxpqp.top`)"
       - "traefik.http.routers.harbor-proxy.entrypoints=websecure"
       # - "traefik.http.routers.harbor-proxy.service=harbor-service"
       - "traefik.http.routers.harbor-proxy.tls=true"
