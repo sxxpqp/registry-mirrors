@@ -41,7 +41,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dockerhub.rule=Host(`dockerhub.sxxpqp.top`)"
+      - "traefik.http.routers.dockerhub.rule=Host(`dockerhub.sxxpqp.top`) || Host(`index.sxxpqp.top`)" 
       - "traefik.http.routers.dockerhub.entrypoints=websecure"
       - "traefik.http.routers.dockerhub.tls=true"
       - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
@@ -111,7 +111,7 @@ services:
   #     - web
   #   labels:
   #     - "traefik.enable=true"
-  #     - "traefik.http.routers.registry-k8s.rule=Host(`registry.k8s.sxxpqp.top`)"
+  #     - "traefik.http.routers.registry-k8s.rule=Host(`registry.k8s.sxxpqp.top`)" 
   #     - "traefik.http.routers.registry-k8s.entrypoints=websecure"
   #     - "traefik.http.routers.registry-k8s.tls=true"
   #     - "traefik.http.routers.registry-k8s.tls.certresolver=myresolver"
