@@ -11,7 +11,7 @@ services:
     environment:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: Xl123456..
-      MINIO_API_REQUEST_MAX_SIZE: 1000MB
+      MINIO_API_REQUEST_MAX_SIZE: 10000MB
     networks:
       - web
     command: server /data --console-address ":9001"
