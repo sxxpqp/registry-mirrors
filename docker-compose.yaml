@@ -41,7 +41,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dockerhub.rule=Host(`dockerhub.sxxpqp.top`) || Host(`hub.sxxpqp.top`) || Host(`dockerhub1.sxxpqp.top`)" 
+      - "traefik.http.routers.dockerhub.rule=Host(`dockerhub.sxxpqp.top`) || Host(`hub.sxxpqp.top`) || Host(`ghcr.sxxpqp.top`)" 
       - "traefik.http.routers.dockerhub.entrypoints=websecure"
       - "traefik.http.routers.dockerhub.tls=true"
       - "traefik.http.routers.dockerhub.tls.certresolver=myresolver"
